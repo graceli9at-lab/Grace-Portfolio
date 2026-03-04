@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grace Li — Product Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0f0f0f;
+      --dark: #1a1a1a;
+      --mid: #6b7280;
+      --light: #f5f5f5;
+      --white: #ffffff;
+      --accent: #1d4ed8;
+      --accent-light: #dbeafe;
+      --border: #e5e7eb;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.5px;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--black); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 60px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-content { max-width: 680px; }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 28px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent), #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-bio {
+      font-size: 1.1rem;
+      color: var(--mid);
+      max-width: 540px;
+      margin-bottom: 40px;
+      line-height: 1.75;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      padding: 14px 28px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+
+    .btn-secondary {
+      padding: 14px 28px;
+      background: transparent;
+      color: var(--dark);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .btn-secondary:hover { border-color: var(--dark); transform: translateY(-1px); }
+
+    /* SECTION WRAPPER */
+    section {
+      padding: 100px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--mid);
+      max-width: 500px;
+      margin-bottom: 60px;
+      line-height: 1.7;
+    }
+
+    /* IMPACT STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 0;
+    }
+
+    .stat-card {
+      background: var(--light);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      color: var(--black);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-number span { color: var(--accent); }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--mid);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* ABOUT */
+    #about {
+      background: var(--light);
+      max-width: 100%;
+      padding: 100px 0;
+    }
+
+    #about .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      color: #374151;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      color: var(--dark);
+    }
+
+    .about-quick-facts { display: flex; flex-direction: column; gap: 20px; }
+
+    .fact {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    .fact-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .fact-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+
+    .fact-desc {
+      font-size: 0.825rem;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      background: var(--white);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+    }
+
+    .project-thumb {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -2px;
+    }
+
+    .project-body { padding: 28px; }
+
+    .project-category {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--mid);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .project-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 999px;
+    }
+
+    /* SKILLS */
+    #skills { background: var(--white); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+
+    .skill-group {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 0.2s;
+    }
+
+    .skill-group:hover { border-color: var(--accent); }
+
+    .skill-group-icon { font-size: 1.8rem; margin-bottom: 14px; }
+
+    .skill-group-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .skill-list li {
+      font-size: 0.825rem;
+      color: var(--mid);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-list li::before {
+      content: '';
+      width: 4px; height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* CONTACT */
+    #contact { background: var(--black); max-width: 100%; padding: 100px 0; }
+
+    #contact .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 60px;
+      text-align: center;
+    }
+
+    #contact .section-label { color: #93c5fd; }
+
+    #contact .section-title { color: var(--white); margin-bottom: 16px; }
+
+    #contact .section-sub { color: #9ca3af; margin: 0 auto 48px; }
+
+    .contact-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border: 1.5px solid #374151;
+      border-radius: var(--radius);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .contact-link:hover { border-color: #93c5fd; background: #1e3a8a22; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 28px 60px;
+      background: var(--black);
+      border-top: 1px solid #1f2937;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 20px; }
+      .hero, section { padding-left: 24px; padding-right: 24px; }
+      #about .inner { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+      #contact .inner { padding: 0 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Grace Li</a>
+  <ul class="nav-links">
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Senior Product Manager · S&amp;P Global</div>
+    <h1>Hi, I'm <span>Grace Li.</span><br>I build products that matter.</h1>
+    <p class="hero-bio">
+      7 years of experience driving workflow automations in private markets. I lead cross-functional teams to ship products that measurably move the needle — from MAU growth to ARR impact to customer satisfaction.
+    </p>
+    <div class="hero-cta">
+      <a href="#work" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- IMPACT -->
+<section id="impact">
+  <p class="section-label">By the numbers</p>
+  <h2 class="section-title">Impact that speaks for itself</h2>
+  <p class="section-sub">Driving measurable outcomes across product, revenue, and user experience.</p>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number"><span>+20%</span></div>
+      <div class="stat-label">Monthly Active User growth through workflow automation initiatives</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number"><span>$7MM</span></div>
+      <div class="stat-label">ARR impact delivered across private markets product lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number"><span>+9</span></div>
+      <div class="stat-label">NPS improvement through customer-centric product improvements</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number"><span>70<span style="font-size:1.8rem">+</span></span></div>
+      <div class="stat-label">People across cross-functional teams led in transformation initiatives</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="inner">
+    <div class="about-text">
+      <p class="section-label">About me</p>
+      <h2 class="section-title">Product leader at the intersection of data &amp; automation</h2>
+      <p>
+        I'm a Senior Product Manager at S&amp;P Global with a track record of turning complex workflows into elegant, scalable product experiences. My work sits at the crossroads of private markets data, workflow automation, and enterprise software.
+      </p>
+      <p>
+        I thrive in ambiguous environments — distilling customer needs, aligning stakeholders, and rallying teams around a shared vision. Whether it's a 0→1 feature build or a large-scale platform transformation, I lead with data and empathy.
+      </p>
+      <div class="about-tags">
+        <span class="tag">Private Markets</span>
+        <span class="tag">Workflow Automation</span>
+        <span class="tag">Enterprise SaaS</span>
+        <span class="tag">Data Products</span>
+        <span class="tag">Go-to-Market</span>
+        <span class="tag">Agile / Scrum</span>
+        <span class="tag">Stakeholder Management</span>
+      </div>
+    </div>
+    <div class="about-quick-facts">
+      <div class="fact">
+        <div class="fact-icon">🏢</div>
+        <div>
+          <div class="fact-title">S&amp;P Global</div>
+          <div class="fact-desc">Senior Product Manager driving automation products in private markets data &amp; analytics</div>
+        </div>
+      </div>
+      <div class="fact">
+        <div class="fact-icon">📈</div>
+        <div>
+          <div class="fact-title">7 Years of Product Experience</div>
+          <div class="fact-desc">End-to-end product ownership from discovery to delivery across enterprise platforms</div>
+        </div>
+      </div>
+      <div class="fact">
+        <div class="fact-icon">🤝</div>
+        <div>
+          <div class="fact-title">Cross-functional Leadership</div>
+          <div class="fact-desc">Led transformation initiatives across 70+ people spanning engineering, design, sales &amp; ops</div>
+        </div>
+      </div>
+      <div class="fact">
+        <div class="fact-icon">🎯</div>
+        <div>
+          <div class="fact-title">Outcome-driven</div>
+          <div class="fact-desc">Focused on measurable impact: user growth, revenue, and customer satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WORK -->
+<section id="work">
+  <p class="section-label">Featured work</p>
+  <h2 class="section-title">Products &amp; initiatives</h2>
+  <p class="section-sub">A selection of product work across automation, data, and platform initiatives.</p>
+
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-thumb" style="background: #eff6ff; color: #1d4ed8;">WF</div>
+      <div class="project-body">
+        <div class="project-category">Workflow Automation</div>
+        <div class="project-title">Private Markets Workflow Engine</div>
+        <div class="project-desc">Led end-to-end product development of an automated workflow platform for private equity and credit teams, reducing manual processing time by 40% and driving 20% MAU growth.</div>
+        <div class="project-tags">
+          <span class="project-tag">Automation</span>
+          <span class="project-tag">Private Equity</span>
+          <span class="project-tag">SaaS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb" style="background: #f5f3ff; color: #7c3aed;">$7M</div>
+      <div class="project-body">
+        <div class="project-category">Revenue Growth</div>
+        <div class="project-title">Data Monetization Initiative</div>
+        <div class="project-desc">Partnered with sales and data teams to package and launch a new data product tier, unlocking $7MM in incremental ARR. Owned pricing strategy, packaging, and go-to-market planning.</div>
+        <div class="project-tags">
+          <span class="project-tag">Revenue</span>
+          <span class="project-tag">Data Products</span>
+          <span class="project-tag">GTM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb" style="background: #f0fdf4; color: #16a34a;">NPS</div>
+      <div class="project-body">
+        <div class="project-category">Customer Experience</div>
+        <div class="project-title">Platform UX Transformation</div>
+        <div class="project-desc">Spearheaded a 70-person cross-functional initiative to redesign core platform UX. Ran continuous discovery with enterprise clients, resulting in +9 NPS and improved retention.</div>
+        <div class="project-tags">
+          <span class="project-tag">UX</span>
+          <span class="project-tag">Enterprise</span>
+          <span class="project-tag">NPS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Expertise</p>
+  <h2 class="section-title">What I bring to the table</h2>
+  <p class="section-sub">A blend of strategic thinking, technical fluency, and customer empathy.</p>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-icon">🧭</div>
+      <div class="skill-group-title">Product Strategy</div>
+      <ul class="skill-list">
+        <li>Product vision &amp; roadmapping</li>
+        <li>OKR planning &amp; goal setting</li>
+        <li>Market &amp; competitive analysis</li>
+        <li>Pricing &amp; packaging strategy</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-icon">🔍</div>
+      <div class="skill-group-title">Discovery &amp; Research</div>
+      <ul class="skill-list">
+        <li>User interviews &amp; surveys</li>
+        <li>Jobs-to-be-done framework</li>
+        <li>Usability testing</li>
+        <li>Data-driven insights</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-icon">🚀</div>
+      <div class="skill-group-title">Delivery &amp; Execution</div>
+      <ul class="skill-list">
+        <li>Agile / Scrum / Kanban</li>
+        <li>Sprint planning &amp; grooming</li>
+        <li>Cross-functional alignment</li>
+        <li>Launch &amp; GTM coordination</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-icon">📊</div>
+      <div class="skill-group-title">Analytics &amp; Metrics</div>
+      <ul class="skill-list">
+        <li>MAU / DAU / retention analysis</li>
+        <li>A/B testing &amp; experimentation</li>
+        <li>SQL &amp; data querying</li>
+        <li>Tableau / Looker dashboards</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-icon">🤝</div>
+      <div class="skill-group-title">Leadership</div>
+      <ul class="skill-list">
+        <li>Executive stakeholder alignment</li>
+        <li>Large team facilitation (70+)</li>
+        <li>Mentoring &amp; coaching PMs</li>
+        <li>Conflict resolution</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-icon">🛠️</div>
+      <div class="skill-group-title">Tools</div>
+      <ul class="skill-list">
+        <li>Jira, Confluence, Productboard</li>
+        <li>Figma (wireframing &amp; specs)</li>
+        <li>Salesforce &amp; CRM workflows</li>
+        <li>Slack, Notion, Miro</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="inner">
+    <p class="section-label">Let's connect</p>
+    <h2 class="section-title">Open to conversations</h2>
+    <p class="section-sub">Whether you're looking to collaborate, discuss product, or just say hello — my inbox is open.</p>
+    <div class="contact-links">
+      <a href="mailto:grace.li@example.com" class="contact-link">
+        ✉️ &nbsp; grace.li@example.com
+      </a>
+      <a href="https://linkedin.com/in/graceli" class="contact-link" target="_blank" rel="noopener">
+        💼 &nbsp; LinkedIn
+      </a>
+      <a href="https://github.com/graceli9at-lab" class="contact-link" target="_blank" rel="noopener">
+        💻 &nbsp; GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Grace Li · Built with care
+</footer>
+
+</body>
+</html>
