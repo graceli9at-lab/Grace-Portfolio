@@ -323,6 +323,62 @@
       box-shadow: 0 16px 48px rgba(0,0,0,0.1);
     }
 
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .project-card.featured .project-thumb {
+      height: 100%;
+      min-height: 200px;
+      font-size: 2.2rem;
+    }
+
+    .project-card.featured .project-body {
+      padding: 36px;
+    }
+
+    .featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .project-link:hover { gap: 10px; }
+
+    @media (max-width: 768px) {
+      .project-card.featured {
+        grid-template-columns: 1fr;
+      }
+      .project-card.featured .project-thumb {
+        height: 160px;
+      }
+    }
+
     .project-thumb {
       height: 180px;
       display: flex;
@@ -609,6 +665,31 @@
   <p class="section-sub">A selection of product work across automation, data, and platform initiatives.</p>
 
   <div class="projects-grid">
+
+    <!-- FEATURED: iLEVEL Snowflake Integration -->
+    <div class="project-card featured">
+      <div class="project-thumb" style="background: linear-gradient(135deg, #dbeafe, #ede9fe); color: #1d4ed8;">❄️<br>iLEVEL</div>
+      <div class="project-body">
+        <div class="featured-badge">★ Featured Launch</div>
+        <div class="project-category">No-Code Data Integration · S&amp;P Global × Snowflake</div>
+        <div class="project-title">iLEVEL Snowflake Integration — No-Code Private Markets Data Access</div>
+        <div class="project-desc">
+          Ideated, built, and scaled a no-code integration enabling private markets investors to push raw iLEVEL portfolio data directly into their Snowflake environment — eliminating manual extraction and reducing time-to-insights. The product uses Snowflake's secure data sharing, delivers historical data on setup, and automates ongoing refreshes. It also unlocks access to additional S&P Global datasets including Company Financials, Credit Ratings, and Sustainability data — all without a single line of code from the client.
+        </div>
+        <div class="project-tags">
+          <span class="project-tag">No-Code</span>
+          <span class="project-tag">Snowflake</span>
+          <span class="project-tag">Private Markets</span>
+          <span class="project-tag">Data Integration</span>
+          <span class="project-tag">iLEVEL</span>
+          <span class="project-tag">S&amp;P Global</span>
+        </div>
+        <a class="project-link" href="https://press.spglobal.com/2025-11-18-S-P-Global-Accelerates-Private-Markets-Data-Access-with-No-Code-iLEVEL-Snowflake-Integration" target="_blank" rel="noopener">
+          Read the press release &rarr;
+        </a>
+      </div>
+    </div>
+
     <div class="project-card">
       <div class="project-thumb" style="background: #eff6ff; color: #1d4ed8;">WF</div>
       <div class="project-body">
